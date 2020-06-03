@@ -174,10 +174,104 @@
 
 - 解压zip文件
 - 进入apache-tomcat-8.5.55-src文件夹，创建pom.xml文件，进行maven管理项目
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+ 
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>Tomcat8.5</artifactId>
+    <name>Tomcat8.5</name>
+    <version>8.5</version>
+ 
+    <build>
+        <finalName>Tomcat8.5</finalName>
+        <sourceDirectory>java</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>java</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>test</directory>
+            </testResource>
+        </testResources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+ 
+    <dependencies>
+        <!--添加jaxrpc依赖 远程调用工具包-->
+        <dependency>
+            <groupId>javax.xml</groupId>
+            <artifactId>jaxrpc</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <!--添加soap依赖 soap协议处理工具包-->
+        <dependency>
+            <groupId>javax.xml.soap</groupId>
+            <artifactId>javax.xml.soap-api</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <!--解析WSDL文件 webservice的wsdl文件工具-->
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <!--jsp编译器依赖 Eclipse Java编译器-->
+        <dependency>
+            <groupId>org.eclipse.jdt.core.compiler</groupId>
+            <artifactId>ecj</artifactId>
+            <version>4.5.1</version>
+        </dependency>
+        <!--  ant管理工具      -->
+        <dependency>
+            <groupId>ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+        <!--easymock用于模拟HttpServletRequest对象从而使测试顺利进行 辅助单元测试-->
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>3.4</version>
+        </dependency>
+        <!--添加单元测试框架-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+</project>
+```
 - 在apache-tomcat-8.5.55-src目录下创建source文件夹
 - 将conf和webapps文件夹移动到source目录下
 - 将源码导入IDEA中
 - 给Tomcat源码程序启动类Bootstrap配置VM参数，因为Tomcat源码运行也需要加载配置文件等
+``` properties
+-Dcatalina.home=apache-tomcat-8.5.55-src/source/ 
+-Dcatalina.base=apache-tomcat-8.5.55-src/source/ 
+-Djava.endorsed.dirs=apache-tomcat-8.5.55-src/source/endorsed 
+-Djava.io.tmpdir=apache-tomcat-8.5.55-src/source/temp 
+-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager 
+-Djava.util.logging.config.file=apache-tomcat-8.5.55-src/source/conf/logging.properties
+```
 
 ### 注意点
 

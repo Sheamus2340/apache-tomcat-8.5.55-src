@@ -295,6 +295,7 @@ public final class Bootstrap {
             param = new Object[1];
             param[0] = arguments;
         }
+        // Catalina.load() 加载Catalina的所有的组件和http服务器的组件
         Method method =
             catalinaDaemon.getClass().getMethod(methodName, paramTypes);
         if (log.isDebugEnabled()) {
@@ -338,7 +339,7 @@ public final class Bootstrap {
         if (catalinaDaemon == null) {
             init();
         }
-
+        // Catalina.start() 启动Catalina和http服务器
         Method method = catalinaDaemon.getClass().getMethod("start", (Class [])null);
         method.invoke(catalinaDaemon, (Object [])null);
     }

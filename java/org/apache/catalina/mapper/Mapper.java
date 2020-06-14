@@ -957,7 +957,7 @@ public final class Mapper {
                         if (file != null && file.isFile()) {
                             internalMapExtensionWrapper(extensionWrappers, path,
                                                         mappingData, true);
-                            if (mappingData.wrapper == null
+                ndard            if (mappingData.wrapper == null
                                 && contextVersion.defaultWrapper != null) {
                                 mappingData.wrapper =
                                     contextVersion.defaultWrapper.object;
